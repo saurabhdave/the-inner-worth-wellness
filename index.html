@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Inner Worth Wellness — Heal Within, Shine Naturally</title>
+<meta name="description" content="Sound therapy, hypnotherapy and inner-child work with Dr. Garvita Vyas — held with gentleness in Vadodara &amp; online." />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ece4d6;
+    --bg-warm:#f4ecdb;
+    --ink:#3a322a;
+    --ink-soft:#6a5e52;
+    --moss:#5a6b4f;
+    --moss-deep:#2a3a26;
+    --gold:#b78a3f;
+    --rose:#c47a78;
+    --sand:#d9c7a8;
+    --pink:#e6b8c0;
+  }
+  html,body{background:var(--bg);}
+  body{
+    font-family:"Inter Tight","Helvetica Neue",Helvetica,ui-sans-serif,system-ui,sans-serif;
+    color:var(--ink);
+    margin:0;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:"Instrument Serif",ui-serif,Georgia,serif;font-weight:400;letter-spacing:-.01em;}
+  .ital{font-style:italic;}
+
+  /* ── Hero background (Ken Burns) ── */
+  .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
+  .hero-bg img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:center;
+    transform-origin:60% 55%;
+    animation:kenburns 24s ease-in-out infinite alternate;
+    will-change:transform;
+  }
+  @keyframes kenburns{
+    0%  {transform:scale(1.02);}
+    100%{transform:scale(1.09) translate3d(-1.4%,-0.6%,0);}
+  }
+
+  /* Warm wash + bottom fade */
+  .hero-wash{
+    position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(60% 80% at 30% 40%,rgba(255,245,225,.06),transparent 70%),
+      linear-gradient(180deg,rgba(255,245,225,0) 50%,rgba(60,42,22,.18) 100%);
+  }
+
+  /* Floating sound rings */
+  .rings{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.55;}
+  .ring{
+    position:absolute;left:64%;top:62%;transform:translate(-50%,-50%);
+    border-radius:9999px;border:1px solid rgba(255,245,220,.65);
+    animation:ringpulse 8s ease-out infinite;
+  }
+  .ring.r1{width:180px;height:180px;animation-delay:0s;}
+  .ring.r2{width:340px;height:340px;animation-delay:1.6s;}
+  .ring.r3{width:540px;height:540px;animation-delay:3.2s;}
+  .ring.r4{width:780px;height:780px;animation-delay:4.8s;opacity:.55;}
+  @keyframes ringpulse{
+    0%  {opacity:0;transform:translate(-50%,-50%) scale(.85);}
+    20% {opacity:.55;}
+    100%{opacity:0;transform:translate(-50%,-50%) scale(1.18);}
+  }
+
+  /* Dust motes */
+  .motes{position:absolute;inset:0;z-index:3;pointer-events:none;}
+  .mote{
+    position:absolute;width:5px;height:5px;border-radius:9999px;
+    background:radial-gradient(circle,rgba(255,240,210,.95),rgba(255,240,210,0) 70%);
+    animation:floatY 14s linear infinite;opacity:.55;
+  }
+  @keyframes floatY{
+    0%  {transform:translateY(20px);}
+    100%{transform:translateY(-100vh);}
+  }
+
+  /* Glass tokens */
+  .glass{
+    background:rgba(255,250,240,.5);
+    -webkit-backdrop-filter:blur(18px) saturate(1.15);
+    backdrop-filter:blur(18px) saturate(1.15);
+    border:1px solid rgba(255,255,255,.55);
+  }
+  .glass-soft{
+    background:rgba(255,250,240,.65);
+    -webkit-backdrop-filter:blur(14px);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.6);
+  }
+
+  /* Reveal animations */
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;}
+  .reveal.d1{animation-delay:.05s;}.reveal.d2{animation-delay:.20s;}
+  .reveal.d3{animation-delay:.35s;}.reveal.d4{animation-delay:.50s;}
+  .reveal.d5{animation-delay:.65s;}.reveal.d6{animation-delay:.80s;}
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  .scale-in{opacity:0;transform:scale(.985);animation:scaleIn 1s cubic-bezier(.2,.7,.2,1) .15s forwards;}
+  @keyframes scaleIn{to{opacity:1;transform:scale(1);}}
+  .float-in-left{opacity:0;transform:translateX(-18px);animation:floatLeft .9s cubic-bezier(.2,.7,.2,1) .35s forwards;}
+  @keyframes floatLeft{to{opacity:1;transform:translateX(0);}}
+  .float-in-right{opacity:0;transform:translateY(20px);animation:floatUp .9s cubic-bezier(.2,.7,.2,1) .5s forwards;}
+  @keyframes floatUp{to{opacity:1;transform:translateY(0);}}
+
+  /* In-view reveal */
+  .iv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1);}
+  .iv.show{opacity:1;transform:translateY(0);}
+
+  .btn-press{transition:transform .15s ease,background-color .2s ease,box-shadow .2s ease;}
+  .btn-press:hover{transform:translateY(-1px);}
+  .btn-press:active{transform:scale(.98);}
+
+  .nav-item{position:relative;}
+  .nav-item::after{
+    content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;
+    background:currentColor;transform:scaleX(0);transform-origin:left;
+    transition:transform .35s ease;
+  }
+  .nav-item:hover::after{transform:scaleX(1);}
+
+  .breathe{animation:breathe 4.5s ease-in-out infinite;}
+  @keyframes breathe{
+    0%,100%{transform:scale(1);opacity:.85;}
+    50%{transform:scale(1.25);opacity:1;}
+  }
+
+  /* Modality cards */
+  .modality{transition:transform .4s ease,box-shadow .4s ease,background-color .3s ease;}
+  .modality:hover{transform:translateY(-4px);box-shadow:0 24px 60px -24px rgba(60,42,20,.28);}
+
+  /* Soft aurora for non-hero sections */
+  .soft-aurora{
+    position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.55;
+    background:
+      radial-gradient(40% 30% at 12% 18%,#efe2c6 0%,transparent 60%),
+      radial-gradient(30% 24% at 88% 70%,#d8c39c 0%,transparent 65%);
+    filter:blur(40px);
+  }
+
+  .stat-num{font-family:"Instrument Serif",serif;font-size:clamp(64px,10vw,128px);line-height:1;color:var(--moss-deep);letter-spacing:-.02em;}
+  .ul-accent{background:linear-gradient(180deg,transparent 65%,rgba(196,122,120,.35) 65%,rgba(196,122,120,.35) 88%,transparent 88%);}
+
+  *:focus-visible{outline:2px solid rgba(40,32,22,.45);outline-offset:3px;border-radius:6px;}
+
+  /* Gentle bowl swing */
+  .sway{animation:sway 5s ease-in-out infinite;}
+  @keyframes sway{0%,100%{transform:rotate(-3deg);} 50%{transform:rotate(3deg);}}
+
+  /* Candle flicker */
+  .candle{
+    position:absolute;border-radius:9999px;pointer-events:none;mix-blend-mode:screen;filter:blur(36px);
+    background:radial-gradient(circle,rgba(255,196,120,.55),rgba(255,160,80,.18) 45%,transparent 70%);
+    animation:flicker 3.6s ease-in-out infinite;
+  }
+  @keyframes flicker{
+    0%,100%{opacity:.85;transform:scale(1);}
+    20%{opacity:1;transform:scale(1.04);}
+    40%{opacity:.7;transform:scale(.98);}
+    65%{opacity:.95;transform:scale(1.02);}
+    80%{opacity:.78;transform:scale(.99);}
+  }
+
+  /* Lotus glow */
+  .lotus-glow{
+    position:absolute;pointer-events:none;border-radius:9999px;
+    background:radial-gradient(circle,rgba(255,235,200,.22),transparent 70%);
+    filter:blur(20px);
+    animation:breatheGlow 6s ease-in-out infinite;
+  }
+  @keyframes breatheGlow{0%,100%{opacity:.7;transform:scale(1);}50%{opacity:1;transform:scale(1.06);}}
+
+  /* Drifting sound waves */
+  .sound-wave{
+    position:absolute;left:-10%;right:-10%;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,245,220,.55),transparent);
+    opacity:.35;animation:driftX 14s linear infinite;
+  }
+  @keyframes driftX{0%{transform:translateX(-10%);}100%{transform:translateX(10%);}}
+
+  /* Translucent nav on scroll */
+  .nav-shell{transition:background-color .4s ease,backdrop-filter .4s ease,box-shadow .4s ease,border-color .4s ease;}
+  .nav-shell.is-stuck{
+    background:rgba(236,228,214,.72);
+    -webkit-backdrop-filter:blur(18px) saturate(1.1);
+    backdrop-filter:blur(18px) saturate(1.1);
+    box-shadow:0 10px 30px -20px rgba(40,30,20,.25);
+    border-bottom:1px solid rgba(40,30,20,.08);
+  }
+
+  /* Hero readability panel */
+  .hero-panel{
+    background:linear-gradient(180deg,rgba(40,32,22,.0) 0%,rgba(40,32,22,.18) 60%,rgba(40,32,22,.32) 100%);
+    -webkit-backdrop-filter:blur(2px);
+    backdrop-filter:blur(2px);
+  }
+
+  /* Primary CTA shimmer */
+  .cta-primary{position:relative;overflow:hidden;}
+  .cta-primary::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(110deg,transparent 30%,rgba(255,245,220,.35) 50%,transparent 70%);
+    transform:translateX(-100%);
+    transition:transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .cta-primary:hover::before{transform:translateX(100%);}
+
+  /* Sticky mobile CTA */
+  .mobile-cta{
+    position:fixed;left:12px;right:12px;bottom:12px;z-index:60;
+    background:rgba(42,58,38,.95);
+    -webkit-backdrop-filter:blur(14px);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 20px 50px -20px rgba(40,30,20,.5);
+    transform:translateY(140%);transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .mobile-cta.show{transform:translateY(0);}
+  .mobile-cta.hide{transform:translateY(140%);}
+  @media(min-width:768px){.mobile-cta{display:none;}}
+  @media(max-width:767px){body.has-mcta{padding-bottom:84px;}}
+
+  /* Floating stat pill */
+  #statPill .sp-expand{
+    max-width:0;opacity:0;transform:translateX(-6px);
+    transition:max-width .55s cubic-bezier(.2,.7,.2,1),opacity .35s ease .05s,transform .45s cubic-bezier(.2,.7,.2,1);
+    pointer-events:none;
+  }
+  #statPill.is-open .sp-expand,
+  #statPill:hover .sp-expand,
+  #statPill:focus-visible .sp-expand{
+    max-width:340px;opacity:1;transform:translateX(0);pointer-events:auto;
+  }
+  #statPill .sp-bar{height:0%;transition:height .5s cubic-bezier(.2,.7,.2,1);}
+  #statPill.is-open .sp-bar,
+  #statPill:hover .sp-bar,
+  #statPill:focus-visible .sp-bar{height:var(--h);}
+  #statPill .sp-trio::after{
+    content:"";position:absolute;inset:-4px;border-radius:9999px;
+    border:1px solid rgba(196,122,120,.45);
+    animation:ringpulse 3.4s ease-out infinite;pointer-events:none;
+  }
+  #statPill.is-open .sp-trio::after,
+  #statPill:hover .sp-trio::after{animation:none;opacity:0;}
+
+  /* About portrait placeholder */
+  .portrait-placeholder{
+    width:100%;aspect-ratio:4/5;border-radius:32px;
+    background:linear-gradient(135deg,#e9d5c4 0%,#d9c7a8 50%,#c4b09a 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:12px;color:#6a5e52;box-shadow:0 30px 80px -30px rgba(60,42,20,.4);
+  }
+  .portrait-placeholder svg{opacity:.4;}
+  .portrait-placeholder p{font-size:13px;opacity:.6;letter-spacing:.05em;text-transform:uppercase;}
+</style>
+</head>
+<body class="bg-[#ece4d6]">
+
+<main class="bg-[#ece4d6]">
+
+  <!-- ════════════════════ HERO ════════════════════ -->
+  <div class="w-full h-screen flex items-center justify-center p-3 md:p-5 bg-[#ece4d6]">
+    <section class="relative w-full max-w-[1536px] h-full rounded-[1.5rem] md:rounded-[3rem] overflow-hidden flex flex-col items-center bg-white/10 scale-in"
+             aria-label="Hero">
+
+      <!-- Background image with Ken Burns -->
+      <div class="hero-bg" aria-hidden="true">
+        <img src="assets/hero-bg.png"
+             alt="Singing bowls, candles, eucalyptus, chimes and crystals in a serene sound healing setting"/>
+      </div>
+      <div class="hero-wash" aria-hidden="true"></div>
+
+      <!-- Sound rings -->
+      <div class="rings" aria-hidden="true">
+        <span class="ring r1"></span>
+        <span class="ring r2"></span>
+        <span class="ring r3"></span>
+        <span class="ring r4"></span>
+      </div>
+
+      <!-- Dust motes -->
+      <div class="motes" aria-hidden="true">
+        <span class="mote" style="left:18%;bottom:-10px;animation-delay:-2s;"></span>
+        <span class="mote" style="left:42%;bottom:-10px;animation-delay:-7s;width:4px;height:4px;"></span>
+        <span class="mote" style="left:68%;bottom:-10px;animation-delay:-12s;"></span>
+        <span class="mote" style="left:80%;bottom:-10px;animation-delay:-4s;width:6px;height:6px;"></span>
+        <span class="mote" style="left:30%;bottom:-10px;animation-delay:-9s;width:3px;height:3px;"></span>
+      </div>
+
+      <div class="relative z-10 w-full h-full flex flex-col items-center">
+
+        <!-- NAVBAR -->
+        <nav id="navShell" class="nav-shell flex items-center justify-between py-4 px-6 md:px-10 w-full relative z-30 reveal d1">
+          <!-- Logo -->
+          <div class="flex-1 flex items-center gap-2">
+            <a href="#" aria-label="Inner Worth Wellness home">
+              <img src="assets/logo-lotus.png"
+                   alt="The Inner Worth Wellness"
+                   class="h-10 w-auto"
+                   style="mix-blend-mode:multiply;"/>
+            </a>
+          </div>
+
+          <!-- Centre nav links -->
+          <ul class="hidden md:flex items-center gap-10 text-[#2a241e] font-normal text-[12.5px] tracking-[0.04em]">
+            <li class="nav-item"><a href="#modalities">Modalities</a></li>
+            <li class="nav-item"><a href="#sound">Sound Bath</a></li>
+            <li class="nav-item"><a href="#about">About</a></li>
+            <li class="nav-item"><a href="#words">Stories</a></li>
+            <li class="nav-item"><a href="#journey">Journey</a></li>
+          </ul>
+
+          <!-- CTA -->
+          <div class="flex-1 flex justify-end">
+            <a href="https://calendly.com/theinnerworthwellness/30min" target="_blank" rel="noopener"
+               class="cta-primary btn-press hidden sm:flex items-center bg-[#2a3a26] text-[#f5ecd9] rounded-full pl-1.5 pr-5 py-1.5 md:py-2 gap-3 hover:bg-[#1d2b1a] shadow-[0_8px_24px_-8px_rgba(40,30,20,.5)]">
+              <span class="bg-white/15 p-1.5 rounded-full flex items-center justify-center">
+                <i data-lucide="arrow-up-right" class="w-4 h-4 text-[#f5ecd9]"></i>
+              </span>
+              <span class="text-[12.5px] font-normal tracking-[0.06em]">Book Your First Session</span>
+            </a>
+          </div>
+        </nav>
+
+        <!-- Cinematic atmosphere -->
+        <span class="lotus-glow" style="left:54%;top:46%;transform:translate(-50%,-50%);width:520px;height:520px;" aria-hidden="true"></span>
+        <span class="candle" style="left:22%;top:72%;width:90px;height:90px;" aria-hidden="true"></span>
+        <span class="candle" style="left:78%;top:78%;width:70px;height:70px;animation-delay:-1.4s;" aria-hidden="true"></span>
+        <span class="sound-wave" style="top:38%;animation-delay:-2s;" aria-hidden="true"></span>
+        <span class="sound-wave" style="top:46%;animation-duration:18s;opacity:.22;" aria-hidden="true"></span>
+        <span class="sound-wave" style="top:54%;animation-delay:-7s;animation-duration:22s;opacity:.28;" aria-hidden="true"></span>
+
+        <!-- Bottom readability panel -->
+        <div class="hero-panel absolute inset-x-0 bottom-0 h-[55%] z-[5] pointer-events-none" aria-hidden="true"></div>
+
+        <!-- HERO HEADLINE -->
+        <div class="absolute inset-x-0 top-[28%] md:top-[26%] z-20 px-6 flex flex-col items-center text-center pointer-events-none reveal d2">
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-full glass-soft mb-6 pointer-events-auto" aria-hidden="true">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#c47a78] breathe"></span>
+            <span class="text-[10.5px] uppercase tracking-[0.28em] text-[#3a322a]">Now welcoming new clients</span>
+          </div>
+          <h1 class="serif text-[#1c1610] text-[44px] sm:text-[60px] md:text-[80px] lg:text-[104px] leading-[0.98] tracking-[-0.015em] max-w-[14ch]">
+            Heal within,<br/><span class="ital ul-accent">shine naturally</span>.
+          </h1>
+          <p class="mt-6 md:mt-8 text-[14px] md:text-[15.5px] text-[#3a322a]/80 max-w-[44ch] leading-[1.7]">
+            Sound therapy, hypnotherapy and inner-child work — held with gentleness in Vadodara&nbsp;&amp;&nbsp;online.
+          </p>
+        </div>
+
+        <!-- FLOATING STAT PILL -->
+        <div id="statPill"
+             class="float-in-left absolute bottom-6 left-6 md:bottom-8 md:left-10 z-20"
+             tabindex="0" role="button" aria-label="3 plus healing modalities">
+          <div class="glass rounded-full overflow-hidden shadow-[0_10px_40px_-12px_rgba(40,30,20,.35)] cursor-pointer">
+            <div class="flex items-center gap-2 pl-2 pr-4 py-2">
+              <span class="sp-trio relative flex shrink-0">
+                <span class="w-6 h-6 rounded-full bg-[#9aa988] border border-white/70"></span>
+                <span class="w-6 h-6 rounded-full bg-[#c89a4a] border border-white/70 -ml-2"></span>
+                <span class="w-6 h-6 rounded-full bg-[#b56a4a] border border-white/70 -ml-2"></span>
+              </span>
+              <span class="serif text-[18px] leading-none text-[#2a241e] whitespace-nowrap">
+                3+ <span class="text-[11px] uppercase tracking-[0.16em] text-[#5a4d40] ml-0.5">Modalities</span>
+              </span>
+              <div class="sp-expand flex items-center gap-3 overflow-hidden whitespace-nowrap">
+                <span class="w-px h-7 bg-[#2a241e]/15 mx-1"></span>
+                <div class="flex items-end gap-[3px] h-6" aria-hidden="true">
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:30%"></span>
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:60%"></span>
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:90%"></span>
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:55%"></span>
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:40%"></span>
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:75%"></span>
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:95%"></span>
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:50%"></span>
+                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:65%"></span>
+                </div>
+                <a href="#modalities"
+                   class="btn-press flex items-center bg-[#2a3a26] text-[#f5ecd9] rounded-full pl-3 pr-1 py-1 gap-2 hover:bg-[#1d2b1a]"
+                   onclick="event.stopPropagation()">
+                  <span class="text-[12px] font-medium tracking-wide">Explore</span>
+                  <span class="w-6 h-6 rounded-full bg-[#f5ecd9] flex items-center justify-center">
+                    <i data-lucide="arrow-down" class="w-3.5 h-3.5" style="color:#2a3a26"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTTOM-RIGHT CUTOUT (hidden on mobile) -->
+        <div class="float-in-right hidden sm:flex absolute bottom-0 right-0 p-3 pt-5 pl-8 sm:p-4 sm:pt-6 sm:pl-10 md:p-6 md:pt-8 md:pl-14 bg-[#ece4d6] rounded-tl-[1.5rem] sm:rounded-tl-[2rem] md:rounded-tl-[3.5rem] items-center gap-3 sm:gap-4 md:gap-6 z-20">
+          <!-- Corner masks -->
+          <div class="absolute -top-[1.5rem] sm:-top-[2rem] md:-top-[3.5rem] right-0 w-[1.5rem] sm:w-[2rem] md:w-[3.5rem] h-[1.5rem] sm:h-[2rem] md:h-[3.5rem] pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M56 56V0C56 30.9279 30.9279 56 0 56H56Z" fill="#ece4d6"/></svg>
+          </div>
+          <div class="absolute bottom-0 -left-[1.5rem] sm:-left-[2rem] md:-left-[3.5rem] w-[1.5rem] sm:w-[2rem] md:w-[3.5rem] h-[1.5rem] sm:h-[2rem] md:h-[3.5rem] pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M56 56H0C30.9279 56 56 30.9279 56 0V56Z" fill="#ece4d6"/></svg>
+          </div>
+          <div class="bg-[#2a3a26]/5 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center border border-[#2a3a26]/15 shrink-0">
+            <i data-lucide="audio-waveform" class="w-5 h-5 md:w-6 md:h-6" style="color:#2a3a26"></i>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <span class="serif text-[17px] md:text-[20px] leading-[1.2] text-[#2a241e] whitespace-nowrap">Sound Bath &middot; Sunday</span>
+            <a href="#sound" class="flex items-center gap-1 text-[#5a4d40] hover:text-[#2a241e] transition-colors whitespace-nowrap">
+              <span class="text-[12px] md:text-[13px] font-normal">Reserve a mat</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ════════════════════ MODALITIES ════════════════════ -->
+  <section id="modalities" class="relative px-6 md:px-10 lg:px-20 py-24 md:py-32" aria-label="Modalities">
+    <div class="soft-aurora" aria-hidden="true"></div>
+    <div class="relative max-w-[1400px] mx-auto">
+
+      <div class="iv flex flex-col items-center text-center mb-16 md:mb-20">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full glass-soft mb-5">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5" style="color:#3a322a"></i>
+          <span class="text-[11px] uppercase tracking-[0.22em] text-[#3a322a]">What we offer</span>
+        </div>
+        <h2 class="serif text-4xl md:text-5xl lg:text-[64px] leading-[1.15] text-[#2a241e] max-w-3xl pb-2">
+          Three gentle paths back to <span class="ital ul-accent">yourself</span>.
+        </h2>
+        <p class="mt-8 text-[15px] md:text-[16px] text-[#5a4d40] max-w-xl leading-relaxed">
+          Each modality is offered alone or woven together — a session is shaped around what your body, mind and soul are asking for today.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
+
+        <!-- Card 1: Sound Therapy (compact, light) -->
+        <article class="iv modality md:col-span-4 bg-[#f4ecdb] rounded-[2rem] p-7 md:p-8 flex flex-col gap-5 border border-[#3a322a]/8 shadow-[0_10px_40px_-20px_rgba(60,42,20,.25)] relative overflow-hidden">
+          <svg class="absolute -right-6 -bottom-6 w-40 h-40 text-[#2a3a26]/8" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+            <circle cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="42"/>
+          </svg>
+          <div class="flex items-center justify-between relative">
+            <span class="w-12 h-12 rounded-full bg-[#2a3a26]/8 flex items-center justify-center">
+              <i data-lucide="audio-waveform" class="w-5 h-5" style="color:#2a3a26"></i>
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.22em] text-[#5a4d40]">01</span>
+          </div>
+          <div class="relative">
+            <h3 class="serif text-[28px] md:text-[32px] leading-[1.1] text-[#2a241e]">Sound Therapy</h3>
+            <p class="mt-3 text-[14px] md:text-[15px] text-[#5a4d40] leading-relaxed">
+              Tibetan singing bowls, chimes and tuning forks gently move you into deep theta — releasing what words can't reach.
+            </p>
+          </div>
+          <ul class="text-[13px] text-[#3a322a]/85 leading-relaxed space-y-1.5 mt-1 relative">
+            <li class="flex gap-2"><span class="text-[#c47a78]">·</span> Nervous system reset</li>
+            <li class="flex gap-2"><span class="text-[#c47a78]">·</span> Sleep &amp; anxiety relief</li>
+            <li class="flex gap-2"><span class="text-[#c47a78]">·</span> Chakra rebalancing</li>
+          </ul>
+          <a href="#sound" class="mt-auto btn-press inline-flex items-center gap-1.5 text-[13px] text-[#2a3a26] font-medium relative">
+            Learn more <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </article>
+
+        <!-- Card 2: Hypnotherapy (featured, dark) -->
+        <article class="iv modality md:col-span-5 bg-[#2a3a26] text-[#f5ecd9] rounded-[2rem] flex flex-col shadow-[0_30px_80px_-30px_rgba(40,55,30,.65)] relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-[420px] h-[420px] rounded-full" style="background:radial-gradient(circle,rgba(255,235,200,.22),transparent 60%);" aria-hidden="true"></div>
+          <div class="absolute left-[60%] top-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#f5ecd9]/12" style="width:280px;height:280px;animation:ringpulse 8s ease-out infinite;" aria-hidden="true"></div>
+          <div class="absolute left-[60%] top-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#f5ecd9]/8" style="width:420px;height:420px;animation:ringpulse 8s ease-out infinite 1.6s;" aria-hidden="true"></div>
+          <div class="p-7 md:p-9 flex flex-col gap-5 relative z-10 grow">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                  <i data-lucide="moon" class="w-5 h-5 text-[#f5ecd9]"></i>
+                </span>
+                <span class="text-[10px] uppercase tracking-[0.22em] text-[#e6b8c0]">Most requested</span>
+              </div>
+              <span class="text-[10px] uppercase tracking-[0.22em] text-[#f5ecd9]/65">02</span>
+            </div>
+            <div>
+              <h3 class="serif text-[34px] md:text-[44px] leading-[1.02] text-[#f5ecd9]">Hypno&shy;therapy</h3>
+              <p class="mt-4 text-[14.5px] md:text-[16px] text-[#f5ecd9]/82 leading-[1.7] max-w-[40ch]">
+                A guided, deeply safe descent into the subconscious — where old patterns are loosened and new beliefs take root.
+              </p>
+            </div>
+            <ul class="text-[13.5px] text-[#f5ecd9]/90 leading-relaxed space-y-1.5 mt-1">
+              <li class="flex gap-2"><span class="text-[#e6b8c0]">·</span> Past-life &amp; regression work</li>
+              <li class="flex gap-2"><span class="text-[#e6b8c0]">·</span> Habit change &amp; confidence</li>
+              <li class="flex gap-2"><span class="text-[#e6b8c0]">·</span> Releasing fear &amp; grief</li>
+            </ul>
+            <a href="#about" class="mt-auto btn-press inline-flex items-center gap-2 bg-[#f5ecd9] text-[#2a3a26] rounded-full pl-4 pr-1 py-1.5 self-start hover:bg-white">
+              <span class="text-[12.5px] font-medium tracking-wide">Read about Garvita</span>
+              <span class="w-7 h-7 rounded-full bg-[#2a3a26] flex items-center justify-center">
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-[#f5ecd9]"></i>
+              </span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3: Inner Child (warm clay) -->
+        <article class="iv modality md:col-span-3 bg-[#e9d5c4] rounded-[2rem] p-7 flex flex-col gap-5 border border-[#b56a4a]/15 shadow-[0_10px_40px_-20px_rgba(120,70,40,.25)] relative overflow-hidden">
+          <div class="absolute -bottom-10 -left-10 w-44 h-44 rounded-full" style="background:radial-gradient(circle,rgba(196,122,120,.35),transparent 65%);" aria-hidden="true"></div>
+          <div class="flex items-center justify-between relative">
+            <span class="w-12 h-12 rounded-full bg-[#b56a4a]/15 flex items-center justify-center">
+              <i data-lucide="heart-handshake" class="w-5 h-5" style="color:#7a3c2c"></i>
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.22em] text-[#7a3c2c]">03</span>
+          </div>
+          <div class="relative">
+            <h3 class="serif text-[26px] leading-[1.1] text-[#3d1f15]">Inner Child &amp; Self-Regulation</h3>
+            <p class="mt-3 text-[14px] text-[#5a3024] leading-relaxed">
+              Re-parent the parts of you that learned to brace, hide or perform.
+            </p>
+          </div>
+          <ul class="text-[13px] text-[#3d1f15]/85 leading-relaxed space-y-1.5 mt-1 relative">
+            <li class="flex gap-2"><span class="text-[#b56a4a]">·</span> Emotional regulation</li>
+            <li class="flex gap-2"><span class="text-[#b56a4a]">·</span> Boundaries &amp; self-worth</li>
+            <li class="flex gap-2"><span class="text-[#b56a4a]">·</span> Reclaiming play &amp; rest</li>
+          </ul>
+          <a href="#journey" class="mt-auto btn-press inline-flex items-center gap-1.5 text-[13px] text-[#7a3c2c] font-medium relative">
+            See the journey <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ ABOUT DR. GARVITA ════════════════════ -->
+  <section id="about" class="relative px-6 md:px-10 lg:px-20 py-24 md:py-32 bg-[#f4ecdb]" aria-label="About Dr. Garvita Vyas">
+    <div class="relative max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <!-- Portrait -->
+      <div class="iv lg:col-span-5 relative">
+        <div class="portrait-placeholder">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <p>Portrait of Dr. Garvita</p>
+        </div>
+        <!-- Floating credential -->
+        <div class="absolute -top-3 -right-3 glass rounded-2xl px-3 py-2 flex items-center gap-2 shadow-[0_10px_30px_-12px_rgba(40,30,20,.4)] z-10">
+          <i data-lucide="badge-check" class="w-4 h-4" style="color:#2a3a26"></i>
+          <span class="text-[11px] uppercase tracking-[0.18em] text-[#2a241e]">Certified Practitioner</span>
+        </div>
+        <!-- Caption chip -->
+        <div class="absolute left-5 bottom-5 right-5 glass rounded-2xl p-4 flex items-center gap-3 z-10 pointer-events-none">
+          <span class="w-10 h-10 rounded-full bg-[#2a3a26] flex items-center justify-center shrink-0">
+            <i data-lucide="flower-2" class="w-5 h-5 text-[#f5ecd9]"></i>
+          </span>
+          <div class="flex-1">
+            <div class="serif text-[18px] text-[#2a241e] leading-tight">Dr. Garvita Vyas</div>
+            <div class="text-[11px] uppercase tracking-[0.18em] text-[#5a4d40]">Sound · Hypnotherapy · Coaching</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="iv lg:col-span-7">
+        <div class="flex items-center gap-2 mb-5">
+          <i data-lucide="leaf" class="w-3.5 h-3.5" style="color:#2a3a26"></i>
+          <span class="text-[11px] uppercase tracking-[0.22em] text-[#3a322a]">Meet your guide</span>
+        </div>
+
+        <h2 class="serif text-4xl md:text-5xl lg:text-[60px] leading-[1.05] text-[#2a241e]">
+          A doctor who learned to <span class="ital">listen</span> with more than her ears.
+        </h2>
+
+        <p class="mt-6 text-[15px] md:text-[16px] text-[#5a4d40] leading-[1.75] max-w-2xl">
+          Dr. Garvita Vyas is a wellness practitioner blending modern training with ancient healing — Tibetan sound, hypnotherapy, and the quiet work of inner-child reparenting.
+          Her sessions are unhurried, deeply safe, and shaped around the person sitting across from her.
+        </p>
+
+        <blockquote class="mt-8 serif ital text-[22px] md:text-[28px] leading-[1.3] text-[#2a3a26] max-w-2xl border-l-2 border-[#c47a78]/60 pl-5">
+          "When you heal within, you naturally begin to shine — not for the world, but for yourself."
+        </blockquote>
+
+        <dl class="mt-10 grid grid-cols-3 gap-6 md:gap-10 max-w-2xl">
+          <div>
+            <dt class="stat-num">10+</dt>
+            <dd class="text-[12px] uppercase tracking-[0.18em] text-[#5a4d40] mt-2">Years in practice</dd>
+          </div>
+          <div>
+            <dt class="stat-num">300+</dt>
+            <dd class="text-[12px] uppercase tracking-[0.18em] text-[#5a4d40] mt-2">Souls guided</dd>
+          </div>
+          <div>
+            <dt class="stat-num">1:1</dt>
+            <dd class="text-[12px] uppercase tracking-[0.18em] text-[#5a4d40] mt-2">Always personal</dd>
+          </div>
+        </dl>
+
+        <div class="mt-10 flex flex-wrap items-center gap-3">
+          <a href="https://calendly.com/theinnerworthwellness/30min" target="_blank" rel="noopener"
+             class="btn-press inline-flex items-center gap-2 bg-[#2a3a26] text-[#f5ecd9] rounded-full pl-5 pr-2 py-2 hover:bg-[#1d2b1a]">
+            <span class="text-[13px] font-medium tracking-wide">Book an introductory call</span>
+            <span class="w-7 h-7 rounded-full bg-[#f5ecd9] flex items-center justify-center">
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-[#2a3a26]"></i>
+            </span>
+          </a>
+          <a href="#journey" class="btn-press inline-flex items-center gap-2 text-[#2a241e] rounded-full pl-4 pr-4 py-2 border border-[#2a241e]/20 hover:bg-white/60">
+            <span class="text-[13px]">See the journey</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ SOUND BATH (full-bleed dark) ════════════════════ -->
+  <section id="sound" class="relative bg-[#1a2818] text-[#f5ecd9] overflow-hidden" aria-label="Sunday Sound Bath">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute left-[78%] top-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#f5ecd9]/10" style="width:520px;height:520px;animation:ringpulse 10s ease-out infinite;"></div>
+      <div class="absolute left-[78%] top-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#f5ecd9]/8" style="width:780px;height:780px;animation:ringpulse 10s ease-out infinite 2s;"></div>
+      <div class="absolute left-[78%] top-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#f5ecd9]/5" style="width:1100px;height:1100px;animation:ringpulse 10s ease-out infinite 4s;"></div>
+      <div class="absolute left-[78%] top-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full" style="width:340px;height:340px;background:radial-gradient(circle,rgba(230,184,160,.18),transparent 60%);"></div>
+      <div class="absolute left-0 bottom-0 w-[60vw] h-[40vh]" style="background:radial-gradient(ellipse at 0% 100%,rgba(196,122,120,.18),transparent 60%);"></div>
+    </div>
+
+    <div class="relative max-w-[1400px] mx-auto px-6 md:px-10 lg:px-20 py-28 md:py-36 lg:py-40">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-7">
+          <div class="iv flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 w-fit mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#e6b8c0] breathe"></span>
+            <span class="text-[11px] uppercase tracking-[0.22em] text-[#f5ecd9]/80">Group session</span>
+          </div>
+          <h2 class="iv serif text-5xl md:text-6xl lg:text-[88px] leading-[0.98] tracking-[-0.015em]">
+            Sunday<br/>Sound&nbsp;Bath,<br/><span class="ital text-[#e6b8c0]">in&nbsp;person</span>.
+          </h2>
+          <p class="iv mt-7 text-[15px] md:text-[16.5px] text-[#f5ecd9]/82 leading-[1.75] max-w-xl">
+            Ninety minutes of bowls, chimes and breath in a candlelit studio. Bring a mat, a cushion, and whatever you've been carrying — leave a little of it behind.
+          </p>
+
+          <div class="iv mt-10 grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 max-w-xl">
+            <div>
+              <div class="text-[10.5px] uppercase tracking-[0.22em] text-[#f5ecd9]/55">When</div>
+              <div class="serif text-[22px] mt-1.5">Sundays · 6pm</div>
+            </div>
+            <div>
+              <div class="text-[10.5px] uppercase tracking-[0.22em] text-[#f5ecd9]/55">Length</div>
+              <div class="serif text-[22px] mt-1.5">90 minutes</div>
+            </div>
+            <div>
+              <div class="text-[10.5px] uppercase tracking-[0.22em] text-[#f5ecd9]/55">Mats</div>
+              <div class="serif text-[22px] mt-1.5">12 only</div>
+            </div>
+            <div>
+              <div class="text-[10.5px] uppercase tracking-[0.22em] text-[#f5ecd9]/55">Offering</div>
+              <div class="serif text-[22px] mt-1.5">₹1,200</div>
+            </div>
+          </div>
+
+          <div class="iv mt-12 flex flex-wrap items-center gap-3">
+            <a href="https://wa.me/919173243337" target="_blank" rel="noopener"
+               class="btn-press inline-flex items-center gap-2 bg-[#f5ecd9] text-[#2a3a26] rounded-full pl-5 pr-2 py-2 hover:bg-white">
+              <span class="text-[13px] font-medium tracking-wide">Reserve a mat</span>
+              <span class="w-7 h-7 rounded-full bg-[#2a3a26] flex items-center justify-center">
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-[#f5ecd9]"></i>
+              </span>
+            </a>
+            <a href="#about" class="btn-press inline-flex items-center gap-2 text-[#f5ecd9] rounded-full pl-4 pr-4 py-2 border border-[#f5ecd9]/30 hover:bg-white/10">
+              <i data-lucide="info" class="w-4 h-4"></i>
+              <span class="text-[13px]">What to expect</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Stylised bowl -->
+        <div class="iv lg:col-span-5 relative flex items-center justify-center">
+          <div class="relative w-full max-w-[360px] aspect-square">
+            <div class="absolute inset-[16%] rounded-full bg-gradient-to-br from-[#c89a4a] via-[#a87a3c] to-[#5a3a18] shadow-[inset_0_-30px_60px_rgba(0,0,0,.5),0_40px_80px_-20px_rgba(0,0,0,.6)]"></div>
+            <div class="absolute inset-[22%] rounded-full bg-gradient-to-br from-[#3a2a18] to-[#1a120a] opacity-95"></div>
+            <div class="absolute inset-[26%] rounded-full bg-[radial-gradient(circle,rgba(255,220,170,.3),transparent_60%)]"></div>
+            <i data-lucide="audio-waveform" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 text-[#f5ecd9]/85 sway"></i>
+            <span class="absolute top-2 left-1/2 w-1.5 h-1.5 rounded-full bg-[#e6b8c0] breathe" aria-hidden="true"></span>
+            <span class="absolute bottom-4 left-6 w-1 h-1 rounded-full bg-[#f5ecd9] breathe" style="animation-delay:1s" aria-hidden="true"></span>
+            <span class="absolute top-10 right-3 w-1.5 h-1.5 rounded-full bg-[#f5ecd9]/80 breathe" style="animation-delay:2s" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ JOURNEY ════════════════════ -->
+  <section id="journey" class="relative px-6 md:px-10 lg:px-20 py-24 md:py-32 bg-[#f4ecdb]" aria-label="How we work together">
+    <div class="relative max-w-[1400px] mx-auto">
+
+      <div class="iv flex flex-col items-center text-center mb-16">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full glass-soft mb-5">
+          <i data-lucide="route" class="w-3.5 h-3.5" style="color:#3a322a"></i>
+          <span class="text-[11px] uppercase tracking-[0.22em] text-[#3a322a]">How we work together</span>
+        </div>
+        <h2 class="serif text-4xl md:text-5xl lg:text-[64px] leading-[1.05] text-[#2a241e] max-w-3xl">
+          A gentle, four-step <span class="ital">unfolding</span>.
+        </h2>
+      </div>
+
+      <ol class="relative grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div class="hidden lg:block absolute top-12 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#3a322a]/25 to-transparent" aria-hidden="true"></div>
+        <li class="iv relative bg-white/70 rounded-[1.5rem] p-7 border border-[#3a322a]/8">
+          <div class="w-9 h-9 rounded-full bg-[#2a3a26] text-[#f5ecd9] flex items-center justify-center serif text-[18px] mb-4 relative z-10">1</div>
+          <h3 class="serif text-[22px] text-[#2a241e] leading-tight">Discovery call</h3>
+          <p class="mt-2 text-[14px] text-[#5a4d40] leading-relaxed">A free 30-minute conversation. No pressure — just listening, and seeing if we're a fit.</p>
+        </li>
+        <li class="iv relative bg-white/70 rounded-[1.5rem] p-7 border border-[#3a322a]/8">
+          <div class="w-9 h-9 rounded-full bg-[#2a3a26] text-[#f5ecd9] flex items-center justify-center serif text-[18px] mb-4 relative z-10">2</div>
+          <h3 class="serif text-[22px] text-[#2a241e] leading-tight">Intention setting</h3>
+          <p class="mt-2 text-[14px] text-[#5a4d40] leading-relaxed">We map what's calling for healing, and choose the modalities that meet you where you are.</p>
+        </li>
+        <li class="iv relative bg-white/70 rounded-[1.5rem] p-7 border border-[#3a322a]/8">
+          <div class="w-9 h-9 rounded-full bg-[#2a3a26] text-[#f5ecd9] flex items-center justify-center serif text-[18px] mb-4 relative z-10">3</div>
+          <h3 class="serif text-[22px] text-[#2a241e] leading-tight">Sessions</h3>
+          <p class="mt-2 text-[14px] text-[#5a4d40] leading-relaxed">60–90 minute 1:1 sessions, in person or online — guided, embodied, and fully held.</p>
+        </li>
+        <li class="iv relative bg-white/70 rounded-[1.5rem] p-7 border border-[#3a322a]/8">
+          <div class="w-9 h-9 rounded-full bg-[#2a3a26] text-[#f5ecd9] flex items-center justify-center serif text-[18px] mb-4 relative z-10">4</div>
+          <h3 class="serif text-[22px] text-[#2a241e] leading-tight">Integration</h3>
+          <p class="mt-2 text-[14px] text-[#5a4d40] leading-relaxed">Practices, journaling prompts, and gentle check-ins so the work continues to bloom at home.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ════════════════════ TESTIMONIALS ════════════════════ -->
+  <section id="words" class="relative px-6 md:px-10 lg:px-20 py-24 md:py-32" aria-label="Client stories">
+    <div class="relative max-w-[1400px] mx-auto">
+
+      <div class="iv flex items-end justify-between flex-wrap gap-6 mb-12">
+        <h2 class="serif text-4xl md:text-5xl lg:text-[60px] leading-[1.05] text-[#2a241e] max-w-2xl">
+          Words from those who came <span class="ital">home</span> to themselves.
+        </h2>
+        <div class="flex items-center gap-2 text-[#5a4d40]">
+          <i data-lucide="quote" class="w-4 h-4"></i>
+          <span class="text-[12px] uppercase tracking-[0.22em]">Reflections from clients</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 md:gap-6">
+        <figure class="iv bg-[#f4ecdb] rounded-[1.8rem] p-7 border border-[#3a322a]/8 flex flex-col gap-5">
+          <i data-lucide="quote" class="w-5 h-5 text-[#c47a78]"></i>
+          <blockquote class="serif text-[20px] leading-[1.35] text-[#2a241e]">
+            I came in with a knot in my chest I'd carried for years. I left lighter, softer, and somehow — more myself.
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-auto">
+            <span class="w-9 h-9 rounded-full bg-[#9aa988] shrink-0"></span>
+            <div>
+              <div class="text-[13px] text-[#2a241e]">Aanya M.</div>
+              <div class="text-[11px] uppercase tracking-[0.16em] text-[#5a4d40]">Sound therapy · 6 sessions</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="iv bg-[#2a3a26] text-[#f5ecd9] rounded-[1.8rem] p-7 flex flex-col gap-5">
+          <i data-lucide="quote" class="w-5 h-5 text-[#e6b8c0]"></i>
+          <blockquote class="serif text-[20px] leading-[1.35]">
+            Garvita's voice during hypnotherapy felt like a hand I could hold. She helped me meet a part of me I'd been avoiding for a long time.
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-auto">
+            <span class="w-9 h-9 rounded-full bg-[#c89a4a] shrink-0"></span>
+            <div>
+              <div class="text-[13px] text-[#f5ecd9]">Rohan K.</div>
+              <div class="text-[11px] uppercase tracking-[0.16em] text-[#f5ecd9]/70">Hypnotherapy · 3 sessions</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="iv bg-[#f4ecdb] rounded-[1.8rem] p-7 border border-[#3a322a]/8 flex flex-col gap-5">
+          <i data-lucide="quote" class="w-5 h-5 text-[#c47a78]"></i>
+          <blockquote class="serif text-[20px] leading-[1.35] text-[#2a241e]">
+            The inner-child work changed how I speak to myself. Three months in, my mornings feel kinder, my evenings feel quieter.
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-auto">
+            <span class="w-9 h-9 rounded-full bg-[#b56a4a] shrink-0"></span>
+            <div>
+              <div class="text-[13px] text-[#2a241e]">Sneha P.</div>
+              <div class="text-[11px] uppercase tracking-[0.16em] text-[#5a4d40]">Inner child · ongoing</div>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ BEGIN / CTA ════════════════════ -->
+  <section id="book" class="relative px-3 md:px-5 pb-5" aria-label="Book a session">
+    <div class="relative max-w-[1536px] mx-auto rounded-[1.5rem] md:rounded-[3rem] overflow-hidden bg-[#2a3a26] text-[#f5ecd9]">
+      <div class="absolute inset-0 pointer-events-none opacity-60" aria-hidden="true">
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#f5ecd9]/20" style="width:300px;height:300px;animation:ringpulse 8s ease-out infinite;"></div>
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#f5ecd9]/15" style="width:560px;height:560px;animation:ringpulse 8s ease-out infinite 1.6s;"></div>
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#f5ecd9]/10" style="width:880px;height:880px;animation:ringpulse 8s ease-out infinite 3.2s;"></div>
+      </div>
+
+      <div class="relative px-6 md:px-12 lg:px-20 py-24 md:py-32 flex flex-col items-center text-center">
+        <div class="iv flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 mb-6">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#e6b8c0]"></i>
+          <span class="text-[11px] uppercase tracking-[0.22em] text-[#f5ecd9]/85">Begin gently</span>
+        </div>
+        <h2 class="iv serif text-[64px] sm:text-[88px] md:text-[120px] lg:text-[160px] leading-[0.92] tracking-[-0.025em] max-w-[12ch]">
+          Heal&nbsp;Within,<br/><span class="ital ul-accent">Shine&nbsp;Naturally</span>.
+        </h2>
+        <p class="iv mt-6 text-[15px] md:text-[17px] text-[#f5ecd9]/80 max-w-xl leading-relaxed">
+          Your first session is the door. Walk through it on your own time — Dr. Garvita will be here when you're ready.
+        </p>
+
+        <div class="iv mt-10 flex flex-wrap items-center justify-center gap-3">
+          <a href="https://calendly.com/theinnerworthwellness/30min" target="_blank" rel="noopener"
+             class="btn-press inline-flex items-center gap-2 bg-[#f5ecd9] text-[#2a3a26] rounded-full pl-5 pr-2 py-2.5 hover:bg-white">
+            <span class="text-[14px] font-medium tracking-wide">Book a 30-min discovery call</span>
+            <span class="w-8 h-8 rounded-full bg-[#2a3a26] flex items-center justify-center">
+              <i data-lucide="arrow-up-right" class="w-4 h-4 text-[#f5ecd9]"></i>
+            </span>
+          </a>
+          <a href="https://wa.me/919173243337" target="_blank" rel="noopener"
+             class="btn-press inline-flex items-center gap-2 text-[#f5ecd9] rounded-full pl-4 pr-4 py-2.5 border border-[#f5ecd9]/30 hover:bg-white/10">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span class="text-[14px]">WhatsApp +91 91732 43337</span>
+          </a>
+        </div>
+
+        <!-- Contact strip -->
+        <div class="iv mt-14 grid sm:grid-cols-3 gap-8 text-left max-w-3xl w-full">
+          <div class="flex items-start gap-3">
+            <i data-lucide="mail" class="w-4 h-4 mt-1 text-[#e6b8c0] shrink-0"></i>
+            <div>
+              <div class="text-[11px] uppercase tracking-[0.18em] text-[#f5ecd9]/60">Email</div>
+              <a href="mailto:hello@innerworth.co" class="serif text-[18px] mt-1 block hover:text-[#e6b8c0] transition-colors">hello@innerworth.co</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i data-lucide="map-pin" class="w-4 h-4 mt-1 text-[#e6b8c0] shrink-0"></i>
+            <div>
+              <div class="text-[11px] uppercase tracking-[0.18em] text-[#f5ecd9]/60">Studio</div>
+              <div class="serif text-[18px] mt-1">Vadodara, India</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i data-lucide="clock" class="w-4 h-4 mt-1 text-[#e6b8c0] shrink-0"></i>
+            <div>
+              <div class="text-[11px] uppercase tracking-[0.18em] text-[#f5ecd9]/60">Hours</div>
+              <div class="serif text-[18px] mt-1">Tue – Sun · By appointment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="px-6 md:px-10 lg:px-20 py-12 md:py-16 bg-[#ece4d6]">
+    <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo-lotus.png" alt="The Inner Worth Wellness" class="h-10 w-auto" style="mix-blend-mode:multiply;"/>
+        <div class="serif text-[18px] tracking-tight text-[#2a241e]">
+          The Inner&nbsp;Worth <span class="ital text-[#5a4d40]">wellness</span>
+        </div>
+      </div>
+      <div class="text-[12px] text-[#5a4d40] tracking-wide">© 2026 · Heal within, shine naturally.</div>
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/919173243337"
+           class="w-9 h-9 rounded-full glass-soft flex items-center justify-center hover:bg-white/80 btn-press"
+           aria-label="WhatsApp">
+          <i data-lucide="message-circle" class="w-4 h-4" style="color:#3a322a"></i>
+        </a>
+        <a href="https://www.instagram.com/theinnerworthwellness/"
+           target="_blank" rel="noopener"
+           class="w-9 h-9 rounded-full glass-soft flex items-center justify-center hover:bg-white/80 btn-press"
+           aria-label="Instagram">
+          <i data-lucide="camera" class="w-4 h-4" style="color:#3a322a"></i>
+        </a>
+        <a href="mailto:hello@innerworth.co"
+           class="w-9 h-9 rounded-full glass-soft flex items-center justify-center hover:bg-white/80 btn-press"
+           aria-label="Email">
+          <i data-lucide="mail" class="w-4 h-4" style="color:#3a322a"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- Sticky mobile CTA -->
+<a id="mobileCta" href="https://calendly.com/theinnerworthwellness/30min"
+   target="_blank" rel="noopener"
+   class="mobile-cta rounded-full pl-6 pr-2 py-2.5 flex items-center justify-between gap-3 text-[#f5ecd9]"
+   aria-label="Book your first session">
+  <span class="text-[13.5px] tracking-[0.06em]">Book Your First Session</span>
+  <span class="w-9 h-9 rounded-full bg-[#f5ecd9] flex items-center justify-center shrink-0">
+    <i data-lucide="arrow-up-right" class="w-4 h-4 text-[#2a3a26]"></i>
+  </span>
+</a>
+
+<script>
+  lucide.createIcons();
+
+  // Floating stat pill toggle
+  (function () {
+    const pill = document.getElementById('statPill');
+    if (!pill) return;
+    pill.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      pill.classList.toggle('is-open');
+    });
+    document.addEventListener('click', (e) => {
+      if (!pill.contains(e.target)) pill.classList.remove('is-open');
+    });
+  })();
+
+  // Translucent nav + sticky mobile CTA
+  (function () {
+    const nav = document.getElementById('navShell');
+    const mcta = document.getElementById('mobileCta');
+    const hero = document.querySelector('[aria-label="Hero"]');
+    const footer = document.querySelector('footer');
+
+    function onScroll() {
+      const y = window.scrollY || window.pageYOffset;
+      if (nav) nav.classList.toggle('is-stuck', y > 60);
+      if (mcta && hero) {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        const footerTop = footer ? footer.getBoundingClientRect().top : Infinity;
+        const visible = heroBottom < 80 && footerTop > window.innerHeight - 40;
+        mcta.classList.toggle('show', visible);
+        document.body.classList.toggle('has-mcta', visible);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1 && document.querySelector(id)) {
+        e.preventDefault();
+        document.querySelector(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // In-view reveal
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+    }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.iv').forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
