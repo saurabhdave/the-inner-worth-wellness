@@ -1468,6 +1468,15 @@
 
   (function () {
     const WA = '919173243337';
+
+    function esc(v) {
+      return String(v == null ? '' : v)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
     const section = document.getElementById('sessions');
     if (!section || !SESSIONS_URL) return;
 
@@ -1482,17 +1491,17 @@
 
     function featuredHtml(s) {
       return '<div class="sess-feat iv">'
-        + '<span class="sess-feat-badge">&#11088; Next Up &nbsp;&middot;&nbsp; ' + s.type + '</span>'
-        + '<p class="sess-feat-title">' + s.name + '</p>'
-        + (s.description ? '<p class="sess-feat-desc">' + s.description + '</p>' : '')
+        + '<span class="sess-feat-badge">&#11088; Next Up &nbsp;&middot;&nbsp; ' + esc(s.type) + '</span>'
+        + '<p class="sess-feat-title">' + esc(s.name) + '</p>'
+        + (s.description ? '<p class="sess-feat-desc">' + esc(s.description) + '</p>' : '')
         + '<div class="sess-feat-meta">'
-        + '<span>&#128197; ' + s.date + '</span>'
-        + '<span>&#128342; ' + s.time + (s.duration ? ' &nbsp;&middot;&nbsp; ' + s.duration : '') + '</span>'
-        + '<span>&#128205; ' + s.location + '</span>'
+        + '<span>&#128197; ' + esc(s.date) + '</span>'
+        + '<span>&#128342; ' + esc(s.time) + (s.duration ? ' &nbsp;&middot;&nbsp; ' + esc(s.duration) : '') + '</span>'
+        + '<span>&#128205; ' + esc(s.location) + '</span>'
         + '</div>'
-        + (hasLimitedSpots(s) ? '<div class="sess-feat-spots">Only ' + s.spots + ' spot' + (s.spots === '1' ? '' : 's') + ' remaining</div>' : '')
+        + (hasLimitedSpots(s) ? '<div class="sess-feat-spots">Only ' + esc(s.spots) + ' spot' + (s.spots === '1' ? '' : 's') + ' remaining</div>' : '')
         + '<div class="sess-feat-bottom">'
-        + '<div class="sess-feat-price">' + s.price + '</div>'
+        + '<div class="sess-feat-price">' + esc(s.price) + '</div>'
         + (isBooked(s)
             ? '<span class="sess-btn-booked">Fully Booked</span>'
             : '<a href="' + waHref(s) + '" target="_blank" rel="noopener" class="sess-feat-btn">Book via WhatsApp</a>')
@@ -1503,12 +1512,12 @@
     function miniHtml(s) {
       return '<div class="sess-mini iv">'
         + '<div class="sess-mini-info">'
-        + '<div class="sess-mini-name">' + s.name + '</div>'
-        + '<div class="sess-mini-sub">' + s.date + ' &middot; ' + s.time + (s.duration ? ' &middot; ' + s.duration : '') + ' &middot; ' + s.location + '</div>'
-        + (s.description ? '<div class="sess-mini-desc">' + s.description + '</div>' : '')
+        + '<div class="sess-mini-name">' + esc(s.name) + '</div>'
+        + '<div class="sess-mini-sub">' + esc(s.date) + ' &middot; ' + esc(s.time) + (s.duration ? ' &middot; ' + esc(s.duration) : '') + ' &middot; ' + esc(s.location) + '</div>'
+        + (s.description ? '<div class="sess-mini-desc">' + esc(s.description) + '</div>' : '')
         + '</div>'
         + '<div class="sess-mini-right">'
-        + '<div class="sess-mini-price">' + s.price + '</div>'
+        + '<div class="sess-mini-price">' + esc(s.price) + '</div>'
         + (isBooked(s)
             ? '<span class="sess-btn-booked">Fully Booked</span>'
             : '<a href="' + waHref(s) + '" target="_blank" rel="noopener" class="sess-mini-btn">Book</a>')
@@ -1517,18 +1526,21 @@
     }
 
     function showNav() {
-      var d = document.getElementById('sessionsNavItem');
-      var m = document.getElementById('sessionsNavMob');
+      const d = document.getElementById('sessionsNavItem');
+      const m = document.getElementById('sessionsNavMob');
       if (d) d.removeAttribute('hidden');
       if (m) m.removeAttribute('hidden');
     }
 
     function render(sessions) {
-      if (!sessions.length) return;
+      if (!Array.isArray(sessions) || !sessions.length) {
+        section.style.display = 'none';
+        return;
+      }
 
-      var featured = sessions[0];
-      var rest = sessions.slice(1);
-      var rightHtml = rest.length
+      const featured = sessions[0];
+      const rest = sessions.slice(1);
+      const rightHtml = rest.length
         ? rest.map(miniHtml).join('')
         : '<p class="sess-no-more">More sessions coming soon — follow on Instagram for updates.</p>';
 
@@ -1552,7 +1564,7 @@
 
       section.style.display = '';
       lucide.createIcons();
-      section.querySelectorAll('.iv').forEach(function (el) { io.observe(el); });
+      section.querySelectorAll('.iv').forEach(el => io.observe(el));
       showNav();
     }
 
@@ -1569,9 +1581,9 @@
     section.style.display = '';
 
     fetch(SESSIONS_URL)
-      .then(function (r) { return r.json(); })
+      .then(r => r.json())
       .then(render)
-      .catch(function () { section.style.display = 'none'; });
+      .catch(() => { section.style.display = 'none'; });
   })();
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
