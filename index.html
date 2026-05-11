@@ -3,14 +3,26 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Inner Worth Wellness — Heal Within, Shine Naturally</title>
+<title>The Inner Worth Wellness · Sound, Hypnotherapy &amp; Inner-Child Healing · Dr. Garvita Vyas, Ahmedabad</title>
 <meta name="description" content="Sound therapy, hypnotherapy and inner-child work with Dr. Garvita Vyas — held with gentleness in Ahmedabad, Gujarat &amp; online." />
+
+<!-- Open Graph / social share -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="The Inner Worth Wellness" />
+<meta property="og:title" content="The Inner Worth Wellness — Heal Within, Shine Naturally" />
+<meta property="og:description" content="Sound therapy, hypnotherapy and inner-child work with Dr. Garvita Vyas — Ahmedabad, Gujarat &amp; online." />
+<meta property="og:image" content="assets/logo_16_9-removebg.png" />
+<meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Inner Worth Wellness — Heal Within, Shine Naturally" />
+<meta name="twitter:description" content="Sound therapy, hypnotherapy and inner-child work with Dr. Garvita Vyas — Ahmedabad, Gujarat &amp; online." />
+<meta name="twitter:image" content="assets/logo_16_9-removebg.png" />
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="icon" href="assets/lotus.png" type="image/png">
+<link rel="icon" href="assets/logo_16_9-removebg.png" type="image/png">
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <style>
   :root{
@@ -35,6 +47,9 @@
   }
   .serif{font-family:"Instrument Serif",ui-serif,Georgia,serif;font-weight:400;letter-spacing:-.01em;}
   .ital{font-style:italic;}
+
+  /* Anchor offset so sticky nav doesn't cover section headings */
+  section[id]{scroll-margin-top:88px;}
 
   /* ── Hero background (Ken Burns) ── */
   .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
@@ -272,10 +287,6 @@
   @media(min-width:768px){.mobile-cta{display:none;}}
   @media(max-width:767px){body.has-mcta{padding-bottom:84px;}}
 
-  /* Calendly popup — match site's rounded card style */
-  .calendly-popup{border-radius:1.5rem !important;overflow:hidden !important;}
-  @media(min-width:768px){.calendly-popup{border-radius:2rem !important;}}
-
   /* Floating stat pill */
   #statPill .sp-expand{
     max-width:0;opacity:0;transform:translateX(-6px);
@@ -412,12 +423,9 @@
 
       <!-- Background video -->
       <div class="hero-bg" aria-hidden="true">
-        <video id="heroBg" autoplay loop muted playsinline>
-          <!-- Portrait (9:16) for mobile — swap in your file name below -->
-          <source src="assets/hero_portrait_mobile.mp4"
-                  media="(max-width:767px) and (orientation:portrait)">
-          <!-- Landscape (16:9) for desktop / landscape tablet -->
-          <source src="assets/Animated_wellness_hero_background_202605102243.mp4">
+        <video id="heroBg" autoplay loop muted playsinline preload="metadata"
+               poster="assets/hero-poster.jpg">
+          <source src="assets/Animated_wellness_hero_background_202605102243.mp4" type="video/mp4">
         </video>
       </div>
       <div class="hero-wash" aria-hidden="true"></div>
@@ -1305,6 +1313,15 @@
     pill.addEventListener('click', (e) => {
       if (e.target.closest('a')) return;
       pill.classList.toggle('is-open');
+    });
+    pill.addEventListener('keydown', (e) => {
+      if (e.target.closest('a')) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        pill.classList.toggle('is-open');
+      } else if (e.key === 'Escape') {
+        pill.classList.remove('is-open');
+      }
     });
     document.addEventListener('click', (e) => {
       if (!pill.contains(e.target)) pill.classList.remove('is-open');
