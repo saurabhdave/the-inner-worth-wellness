@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/lotus.png" type="image/png">
 <style>
   :root{
     --bg:#ece4d6;
@@ -36,24 +37,28 @@
 
   /* ── Hero background (Ken Burns) ── */
   .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
-  .hero-bg img{
+  .hero-bg video{
     position:absolute;inset:0;width:100%;height:100%;
     object-fit:cover;object-position:center;
-    transform-origin:60% 55%;
-    animation:kenburns 24s ease-in-out infinite alternate;
-    will-change:transform;
   }
-  @keyframes kenburns{
-    0%  {transform:scale(1.02);}
-    100%{transform:scale(1.09) translate3d(-1.4%,-0.6%,0);}
+  .mute-btn{
+    position:absolute;top:5rem;right:1rem;z-index:20;
+    display:flex;align-items:center;justify-content:center;
+    width:2.25rem;height:2.25rem;border-radius:9999px;
+    border:1px solid rgba(58,50,42,.15);cursor:pointer;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    background:rgba(255,245,225,.18);color:#3a322a;
+    transition:background .2s,transform .15s;
   }
+  .mute-btn:hover{background:rgba(255,245,225,.32);}
+  @media(min-width:768px){.mute-btn{top:5.5rem;right:1.5rem;}}
 
-  /* Warm wash + bottom fade */
+  /* Warm wash + top/bottom fade */
   .hero-wash{
     position:absolute;inset:0;z-index:1;pointer-events:none;
     background:
-      radial-gradient(60% 80% at 30% 40%,rgba(255,245,225,.06),transparent 70%),
-      linear-gradient(180deg,rgba(255,245,225,0) 50%,rgba(60,42,22,.18) 100%);
+      linear-gradient(180deg, rgba(8,5,2,.48) 0%, rgba(8,5,2,.0) 22%, rgba(20,14,6,.0) 52%, rgba(20,14,6,.55) 100%),
+      radial-gradient(ellipse 70% 50% at 50% 52%, rgba(255,245,215,.12) 0%, transparent 100%);
   }
 
   /* Floating sound rings */
@@ -189,6 +194,9 @@
 
   /* Translucent nav on scroll */
   .nav-shell{transition:background-color .4s ease,backdrop-filter .4s ease,box-shadow .4s ease,border-color .4s ease;}
+  /* Nav link colour when floating over video */
+  .nav-shell:not(.is-stuck) .nav-item a{color:rgba(255,245,215,.92);text-shadow:0 1px 5px rgba(0,0,0,.3);}
+  .nav-shell:not(.is-stuck) .nav-item a:hover{color:#fff;}
   .nav-shell.is-stuck{
     background:rgba(236,228,214,.72);
     -webkit-backdrop-filter:blur(18px) saturate(1.1);
@@ -196,10 +204,23 @@
     box-shadow:0 10px 30px -20px rgba(40,30,20,.25);
     border-bottom:1px solid rgba(40,30,20,.08);
   }
+  .nav-logo{filter:drop-shadow(0 1px 10px rgba(0,0,0,.45)) drop-shadow(0 0 4px rgba(0,0,0,.25));}
+  .nav-shell.is-stuck .nav-logo{filter:none;}
+  /* WhatsApp nav button */
+  .nav-wa{
+    display:flex;align-items:center;justify-content:center;gap:5px;
+    padding:.45rem .7rem;border-radius:9999px;
+    border:1px solid rgba(255,245,215,.35);color:rgba(255,245,215,.92);
+    font-size:11.5px;letter-spacing:.04em;
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .nav-wa:hover{background:rgba(255,245,215,.15);color:#fff;border-color:rgba(255,245,215,.55);}
+  .nav-shell.is-stuck .nav-wa{color:#2a3a26;border-color:rgba(42,58,38,.22);}
+  .nav-shell.is-stuck .nav-wa:hover{background:rgba(42,58,38,.07);}
 
   /* Hero readability panel */
   .hero-panel{
-    background:linear-gradient(180deg,rgba(40,32,22,.0) 0%,rgba(40,32,22,.18) 60%,rgba(40,32,22,.32) 100%);
+    background:linear-gradient(180deg,rgba(40,32,22,.0) 0%,rgba(40,32,22,.28) 60%,rgba(40,32,22,.52) 100%);
     -webkit-backdrop-filter:blur(2px);
     backdrop-filter:blur(2px);
   }
@@ -273,15 +294,22 @@
 
   <!-- ════════════════════ HERO ════════════════════ -->
   <div class="w-full h-screen flex items-center justify-center p-3 md:p-5 bg-[#ece4d6]">
-    <section class="relative w-full max-w-[1536px] h-full rounded-[1.5rem] md:rounded-[3rem] overflow-hidden flex flex-col items-center bg-white/10 scale-in"
+    <section class="relative w-full max-w-[1536px] h-full rounded-[1.5rem] md:rounded-[3rem] overflow-hidden flex flex-col items-center scale-in bg-white/10"
              aria-label="Hero">
 
-      <!-- Background image with Ken Burns -->
+      <!-- Background video -->
       <div class="hero-bg" aria-hidden="true">
-        <img src="assets/hero-bg.png"
-             alt="Singing bowls, candles, eucalyptus, chimes and crystals in a serene sound healing setting"/>
+        <video id="heroBg" src="assets/Animated_wellness_hero_background_202605102243.mp4"
+               autoplay loop muted playsinline></video>
       </div>
       <div class="hero-wash" aria-hidden="true"></div>
+
+      <div class="relative z-10 w-full h-full flex flex-col items-center">
+
+      <!-- Mute toggle -->
+      <button id="muteBtn" class="mute-btn btn-press" aria-label="Unmute background video">
+        <i data-lucide="volume-x" class="w-4 h-4"></i>
+      </button>
 
       <!-- Sound rings -->
       <div class="rings" aria-hidden="true">
@@ -300,17 +328,15 @@
         <span class="mote" style="left:30%;bottom:-10px;animation-delay:-9s;width:3px;height:3px;"></span>
       </div>
 
-      <div class="relative z-10 w-full h-full flex flex-col items-center">
+      <!-- NAVBAR -->
+      <nav id="navShell" class="nav-shell absolute top-0 left-0 right-0 flex items-center justify-between py-4 px-6 md:px-10 z-30 reveal d1">
 
-        <!-- NAVBAR -->
-        <nav id="navShell" class="nav-shell flex items-center justify-between py-4 px-6 md:px-10 w-full relative z-30 reveal d1">
           <!-- Logo -->
           <div class="flex-1 flex items-center gap-2">
             <a href="#" aria-label="Inner Worth Wellness home">
-              <img src="assets/logo-lotus.png"
+              <img src="assets/logo_16_9-removebg.png"
                    alt="The Inner Worth Wellness"
-                   class="h-10 w-auto"
-                   style="mix-blend-mode:multiply;"/>
+                   class="h-10 w-auto nav-logo"/>
             </a>
           </div>
 
@@ -325,9 +351,14 @@
           </ul>
 
           <!-- CTA -->
-          <div class="flex-1 flex justify-end">
+          <div class="flex-1 flex justify-end items-center gap-2">
+            <a href="https://wa.me/919173243337" target="_blank" rel="noopener"
+               class="nav-wa btn-press" aria-label="Chat on WhatsApp">
+              <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
+              <span class="hidden sm:inline">WhatsApp</span>
+            </a>
             <a href="https://calendly.com/theinnerworthwellness/30min" target="_blank" rel="noopener"
-               class="cta-primary btn-press hidden sm:flex items-center bg-[#2a3a26] text-[#f5ecd9] rounded-full pl-1.5 pr-5 py-1.5 md:py-2 gap-3 hover:bg-[#1d2b1a] shadow-[0_8px_24px_-8px_rgba(40,30,20,.5)]">
+               class="cta-primary btn-press hidden md:flex items-center bg-[#2a3a26] text-[#f5ecd9] rounded-full pl-1.5 pr-5 py-1.5 md:py-2 gap-3 hover:bg-[#1d2b1a] shadow-[0_8px_24px_-8px_rgba(40,30,20,.5)]">
               <span class="bg-white/15 p-1.5 rounded-full flex items-center justify-center">
                 <i data-lucide="arrow-up-right" class="w-4 h-4 text-[#f5ecd9]"></i>
               </span>
@@ -353,10 +384,12 @@
             <span class="w-1.5 h-1.5 rounded-full bg-[#c47a78] breathe"></span>
             <span class="text-[10.5px] uppercase tracking-[0.28em] text-[#3a322a]">Now welcoming new clients</span>
           </div>
-          <h1 class="serif text-[#1c1610] text-[44px] sm:text-[60px] md:text-[80px] lg:text-[104px] leading-[0.98] tracking-[-0.015em] max-w-[14ch]">
+          <h1 class="serif text-[#1c1610] text-[44px] sm:text-[60px] md:text-[80px] lg:text-[104px] leading-[0.98] tracking-[-0.015em] max-w-[14ch]"
+              style="text-shadow:0 0 60px rgba(255,245,210,.55),0 2px 16px rgba(255,245,210,.35);">
             Heal within,<br/><span class="ital ul-accent">shine naturally</span>.
           </h1>
-          <p class="mt-6 md:mt-8 text-[14px] md:text-[15.5px] text-[#3a322a]/80 max-w-[44ch] leading-[1.7]">
+          <p class="mt-6 md:mt-8 text-[14px] md:text-[15.5px] text-[#2a1e12] max-w-[44ch] leading-[1.7]"
+             style="text-shadow:0 1px 8px rgba(255,245,210,.5);">
             Sound therapy, hypnotherapy and inner-child work — held with gentleness in Vadodara&nbsp;&amp;&nbsp;online.
           </p>
         </div>
@@ -422,7 +455,7 @@
           </div>
         </div>
 
-      </div>
+      </div><!-- /z-10 wrapper -->
     </section>
   </div>
 
@@ -993,11 +1026,8 @@
   <!-- ════════════════════ FOOTER ════════════════════ -->
   <footer class="px-6 md:px-10 lg:px-20 py-12 md:py-16 bg-[#ece4d6]">
     <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <img src="assets/logo-lotus.png" alt="The Inner Worth Wellness" class="h-10 w-auto" style="mix-blend-mode:multiply;"/>
-        <div class="serif text-[18px] tracking-tight text-[#2a241e]">
-          The Inner&nbsp;Worth <span class="ital text-[#5a4d40]">wellness</span>
-        </div>
+      <div class="flex items-center">
+        <img src="assets/logo_16_9-removebg.png" alt="The Inner Worth Wellness" class="h-12 w-auto"/>
       </div>
       <div class="text-[12px] text-[#5a4d40] tracking-wide">© 2026 · Heal within, shine naturally.</div>
       <div class="flex items-center gap-3">
@@ -1036,6 +1066,20 @@
 
 <script>
   lucide.createIcons();
+
+  // Hero video mute toggle
+  (function () {
+    const btn = document.getElementById('muteBtn');
+    const vid = document.getElementById('heroBg');
+    if (!btn || !vid) return;
+    btn.addEventListener('click', () => {
+      vid.muted = !vid.muted;
+      const icon = btn.querySelector('[data-lucide]');
+      icon.setAttribute('data-lucide', vid.muted ? 'volume-x' : 'volume-2');
+      btn.setAttribute('aria-label', vid.muted ? 'Unmute background video' : 'Mute background video');
+      lucide.createIcons();
+    });
+  })();
 
   // Floating stat pill toggle
   (function () {
