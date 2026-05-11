@@ -261,6 +261,10 @@
   }
   .portrait-placeholder svg{opacity:.4;}
   .portrait-placeholder p{font-size:13px;opacity:.6;letter-spacing:.05em;text-transform:uppercase;}
+  /* Myth card divider (line → rose arrow → line) */
+  .myth-divider{display:flex;align-items:center;gap:10px;margin:10px 0;}
+  .myth-divider::before,.myth-divider::after{content:"";flex:1;height:1px;background:rgba(58,50,42,.12);}
+  .myth-divider span{color:#c47a78;font-size:16px;line-height:1;}
 </style>
 </head>
 <body class="bg-[#ece4d6]">
@@ -527,6 +531,78 @@
             See the journey <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
           </a>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ MYTHS & MYTH BUSTERS ════════════════════ -->
+  <section id="myths" class="relative px-6 md:px-10 lg:px-20 py-24 md:py-32" aria-label="Common myths about healing">
+    <div class="soft-aurora" aria-hidden="true"></div>
+    <div class="relative max-w-[1400px] mx-auto">
+
+      <div class="iv flex flex-col items-center text-center mb-16 md:mb-20">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full glass-soft mb-5">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5" style="color:#3a322a"></i>
+          <span class="text-[11px] uppercase tracking-[0.22em] text-[#3a322a]">Setting the record straight</span>
+        </div>
+        <h2 class="serif text-4xl md:text-5xl lg:text-[64px] leading-[1.15] text-[#2a241e] max-w-3xl pb-2">
+          What healing <span class="ital ul-accent">is not</span>.
+        </h2>
+        <p class="mt-8 text-[15px] md:text-[16px] text-[#5a4d40] max-w-xl leading-relaxed">
+          The most common worries — and the truth behind them.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+
+        <!-- Myth 1 -->
+        <article class="iv modality bg-[#f4ecdb] rounded-[1.8rem] p-7 border border-[#3a322a]/8 flex flex-col gap-3">
+          <span class="inline-block text-[9px] font-semibold uppercase tracking-[0.1em] bg-[#2a3a26] text-[#f5ecd9] px-3 py-1 rounded-full self-start">Hypnotherapy</span>
+          <p class="serif ital text-[18px] text-[#a08878] leading-snug line-through">"You lose control — I can make you do anything."</p>
+          <div class="myth-divider"><span>→</span></div>
+          <p class="text-[14px] text-[#2a3a26] font-medium leading-relaxed">You remain fully aware and in control throughout every session.</p>
+        </article>
+
+        <!-- Myth 2 -->
+        <article class="iv modality bg-[#f4ecdb] rounded-[1.8rem] p-7 border border-[#3a322a]/8 flex flex-col gap-3">
+          <span class="inline-block text-[9px] font-semibold uppercase tracking-[0.1em] bg-[#2a3a26] text-[#f5ecd9] px-3 py-1 rounded-full self-start">Hypnotherapy</span>
+          <p class="serif ital text-[18px] text-[#a08878] leading-snug line-through">"It puts you to sleep and you won't remember."</p>
+          <div class="myth-divider"><span>→</span></div>
+          <p class="text-[14px] text-[#2a3a26] font-medium leading-relaxed">You're in a relaxed but alert state — aware of everything.</p>
+        </article>
+
+        <!-- Myth 3 -->
+        <article class="iv modality bg-[#f4ecdb] rounded-[1.8rem] p-7 border border-[#3a322a]/8 flex flex-col gap-3">
+          <span class="inline-block text-[9px] font-semibold uppercase tracking-[0.1em] bg-[#2a3a26] text-[#f5ecd9] px-3 py-1 rounded-full self-start">Hypnotherapy</span>
+          <p class="serif ital text-[18px] text-[#a08878] leading-snug line-through">"Only weak-minded people can be hypnotised."</p>
+          <div class="myth-divider"><span>→</span></div>
+          <p class="text-[14px] text-[#2a3a26] font-medium leading-relaxed">Responsiveness reflects focus and creativity, not weakness.</p>
+        </article>
+
+        <!-- Myth 4 -->
+        <article class="iv modality bg-[#f4ecdb] rounded-[1.8rem] p-7 border border-[#3a322a]/8 flex flex-col gap-3">
+          <span class="inline-block text-[9px] font-semibold uppercase tracking-[0.1em] bg-[#2a3a26] text-[#f5ecd9] px-3 py-1 rounded-full self-start">Hypnotherapy</span>
+          <p class="serif ital text-[18px] text-[#a08878] leading-snug line-through">"It implants false memories or suggestions."</p>
+          <div class="myth-divider"><span>→</span></div>
+          <p class="text-[14px] text-[#2a3a26] font-medium leading-relaxed">Sessions are guided by your own inner landscape — nothing is imposed.</p>
+        </article>
+
+        <!-- Myth 5 -->
+        <article class="iv modality bg-[#f4ecdb] rounded-[1.8rem] p-7 border border-[#3a322a]/8 flex flex-col gap-3">
+          <span class="inline-block text-[9px] font-semibold uppercase tracking-[0.1em] bg-[#9aa988] text-[#2a241e] px-3 py-1 rounded-full self-start">Sound Therapy</span>
+          <p class="serif ital text-[18px] text-[#a08878] leading-snug line-through">"It's just relaxing background music."</p>
+          <div class="myth-divider"><span>→</span></div>
+          <p class="text-[14px] text-[#2a3a26] font-medium leading-relaxed">Frequencies create measurable brainwave and nervous system shifts — it's physics, not ambience.</p>
+        </article>
+
+        <!-- Myth 6 -->
+        <article class="iv modality bg-[#f4ecdb] rounded-[1.8rem] p-7 border border-[#3a322a]/8 flex flex-col gap-3">
+          <span class="inline-block text-[9px] font-semibold uppercase tracking-[0.1em] bg-[#e9d5c4] text-[#5a3024] px-3 py-1 rounded-full self-start">Inner Child</span>
+          <p class="serif ital text-[18px] text-[#a08878] leading-snug line-through">"This is only for people with serious trauma."</p>
+          <div class="myth-divider"><span>→</span></div>
+          <p class="text-[14px] text-[#2a3a26] font-medium leading-relaxed">Anyone who learned to people-please, over-perform, or shut down emotions benefits.</p>
+        </article>
+
       </div>
     </div>
   </section>
