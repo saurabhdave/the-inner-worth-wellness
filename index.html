@@ -298,10 +298,6 @@
   #statPill:focus-visible .sp-expand{
     max-width:340px;opacity:1;transform:translateX(0);pointer-events:auto;
   }
-  #statPill .sp-bar{height:0%;transition:height .5s cubic-bezier(.2,.7,.2,1);}
-  #statPill.is-open .sp-bar,
-  #statPill:hover .sp-bar,
-  #statPill:focus-visible .sp-bar{height:var(--h);}
   #statPill .sp-trio::after{
     content:"";position:absolute;inset:-4px;border-radius:9999px;
     border:1px solid rgba(196,122,120,.45);
@@ -471,6 +467,7 @@
             <li class="nav-item"><a href="#modalities">Modalities</a></li>
             <li class="nav-item"><a href="#sound">Sound Bath</a></li>
             <li class="nav-item"><a href="#about">About</a></li>
+            <li class="nav-item"><a href="#myths">Myths</a></li>
             <li class="nav-item"><a href="#words">Stories</a></li>
             <li class="nav-item"><a href="#faq">FAQ</a></li>
             <li class="nav-item" id="sessionsNavItem" hidden><a href="#sessions">Sessions</a></li>
@@ -545,17 +542,6 @@
               </span>
               <div class="sp-expand flex items-center gap-3 overflow-hidden whitespace-nowrap">
                 <span class="w-px h-7 bg-[#2a241e]/15 mx-1"></span>
-                <div class="flex items-end gap-[3px] h-6" aria-hidden="true">
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:30%"></span>
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:60%"></span>
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:90%"></span>
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:55%"></span>
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:40%"></span>
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:75%"></span>
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:95%"></span>
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:50%"></span>
-                  <span class="sp-bar w-[3px] bg-[#2a241e]/70 rounded-sm" style="--h:65%"></span>
-                </div>
                 <a href="#modalities"
                    class="btn-press flex items-center bg-[#2a3a26] text-[#f5ecd9] rounded-full pl-3 pr-1 py-1 gap-2 hover:bg-[#1d2b1a]"
                    onclick="event.stopPropagation()">
@@ -889,7 +875,8 @@
           <div class="iv mt-10 grid grid-cols-2 gap-x-8 gap-y-6">
             <div>
               <div class="text-[10.5px] uppercase tracking-[0.22em] text-[#f5ecd9]/55">When</div>
-              <div class="serif text-[22px] mt-1.5">Sundays · 6pm</div>
+              <div class="serif text-[22px] mt-1.5">Most Sundays · 6am</div>
+              <div class="text-[11.5px] text-[#f5ecd9]/55 mt-1">Next date confirmed on WhatsApp</div>
             </div>
             <div>
               <div class="text-[10.5px] uppercase tracking-[0.22em] text-[#f5ecd9]/55">Length</div>
@@ -1388,14 +1375,18 @@
     });
   })();
 
-  // Smooth scroll
+  // Smooth scroll — center the section's heading in the viewport
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const id = a.getAttribute('href');
-      if (id.length > 1 && document.querySelector(id)) {
-        e.preventDefault();
-        document.querySelector(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (id.length <= 1) return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const focus = target.querySelector('h1, h2') || target;
+      const rect = focus.getBoundingClientRect();
+      const y = window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     });
   });
 
