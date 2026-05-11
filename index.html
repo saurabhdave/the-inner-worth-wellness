@@ -1458,9 +1458,9 @@
 
   // ── Upcoming Sessions ─────────────────────────────────────────
   // Setup steps (one-time, for Garvita):
-  // 1. Create Google Sheet with row 1 headers:
-  //    Name | Type | Date | Time | Duration | Location | Spots Left | Price | Description | Active
-  // 2. Extensions → Apps Script → paste the doGet() script → Save
+  // 1. Create a dedicated Google Calendar named "Inner Worth Wellness Sessions"
+  // 2. Go to script.google.com → New project → paste the doGet() script → Save
+  //    Set CALENDAR_ID to your calendar's ID (found in Calendar Settings)
   // 3. Deploy → New deployment → Web App
   //    Execute as: Me  |  Who has access: Anyone
   // 4. Copy the /exec URL and paste it as SESSIONS_URL below.
