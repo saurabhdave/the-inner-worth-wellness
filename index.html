@@ -1455,6 +1455,124 @@
       if (e.key === 'Escape' && modal.classList.contains('open')) closeWaModal();
     });
   })();
+
+  // ── Upcoming Sessions ─────────────────────────────────────────
+  // Setup steps (one-time, for Garvita):
+  // 1. Create Google Sheet with row 1 headers:
+  //    Name | Type | Date | Time | Duration | Location | Spots Left | Price | Description | Active
+  // 2. Extensions → Apps Script → paste the doGet() script → Save
+  // 3. Deploy → New deployment → Web App
+  //    Execute as: Me  |  Who has access: Anyone
+  // 4. Copy the /exec URL and paste it as SESSIONS_URL below.
+  const SESSIONS_URL = ''; // ← paste Apps Script /exec URL here
+
+  (function () {
+    const WA = '919173243337';
+    const section = document.getElementById('sessions');
+    if (!section || !SESSIONS_URL) return;
+
+    function waHref(s) {
+      const msg = "Hi Garvita, I'd like to book the " + s.name + " on " + s.date + " at " + s.time + ". Please let me know how to proceed!";
+      return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+    }
+
+    function spotsN(s) { return parseInt(s.spots, 10); }
+    function isBooked(s) { return s.spots !== '' && spotsN(s) === 0; }
+    function hasLimitedSpots(s) { return s.spots !== '' && !isNaN(spotsN(s)) && spotsN(s) > 0; }
+
+    function featuredHtml(s) {
+      return '<div class="sess-feat iv">'
+        + '<span class="sess-feat-badge">&#11088; Next Up &nbsp;&middot;&nbsp; ' + s.type + '</span>'
+        + '<p class="sess-feat-title">' + s.name + '</p>'
+        + (s.description ? '<p class="sess-feat-desc">' + s.description + '</p>' : '')
+        + '<div class="sess-feat-meta">'
+        + '<span>&#128197; ' + s.date + '</span>'
+        + '<span>&#128342; ' + s.time + (s.duration ? ' &nbsp;&middot;&nbsp; ' + s.duration : '') + '</span>'
+        + '<span>&#128205; ' + s.location + '</span>'
+        + '</div>'
+        + (hasLimitedSpots(s) ? '<div class="sess-feat-spots">Only ' + s.spots + ' spot' + (s.spots === '1' ? '' : 's') + ' remaining</div>' : '')
+        + '<div class="sess-feat-bottom">'
+        + '<div class="sess-feat-price">' + s.price + '</div>'
+        + (isBooked(s)
+            ? '<span class="sess-btn-booked">Fully Booked</span>'
+            : '<a href="' + waHref(s) + '" target="_blank" rel="noopener" class="sess-feat-btn">Book via WhatsApp</a>')
+        + '</div>'
+        + '</div>';
+    }
+
+    function miniHtml(s) {
+      return '<div class="sess-mini iv">'
+        + '<div class="sess-mini-info">'
+        + '<div class="sess-mini-name">' + s.name + '</div>'
+        + '<div class="sess-mini-sub">' + s.date + ' &middot; ' + s.time + (s.duration ? ' &middot; ' + s.duration : '') + ' &middot; ' + s.location + '</div>'
+        + (s.description ? '<div class="sess-mini-desc">' + s.description + '</div>' : '')
+        + '</div>'
+        + '<div class="sess-mini-right">'
+        + '<div class="sess-mini-price">' + s.price + '</div>'
+        + (isBooked(s)
+            ? '<span class="sess-btn-booked">Fully Booked</span>'
+            : '<a href="' + waHref(s) + '" target="_blank" rel="noopener" class="sess-mini-btn">Book</a>')
+        + '</div>'
+        + '</div>';
+    }
+
+    function showNav() {
+      var d = document.getElementById('sessionsNavItem');
+      var m = document.getElementById('sessionsNavMob');
+      if (d) d.removeAttribute('hidden');
+      if (m) m.removeAttribute('hidden');
+    }
+
+    function render(sessions) {
+      if (!sessions.length) return;
+
+      var featured = sessions[0];
+      var rest = sessions.slice(1);
+      var rightHtml = rest.length
+        ? rest.map(miniHtml).join('')
+        : '<p class="sess-no-more">More sessions coming soon — follow on Instagram for updates.</p>';
+
+      section.innerHTML =
+        '<div class="relative max-w-[1400px] mx-auto">'
+        + '<div class="iv flex flex-col items-center text-center mb-12 md:mb-16">'
+        + '<div class="flex items-center gap-2 px-3 py-1.5 rounded-full glass-soft mb-5">'
+        + '<i data-lucide="calendar-days" class="w-3.5 h-3.5" style="color:#3a322a"></i>'
+        + '<span class="text-[11px] uppercase tracking-[0.22em] text-[#3a322a]">Upcoming Sessions</span>'
+        + '</div>'
+        + '<h2 class="serif text-4xl md:text-5xl lg:text-[64px] leading-[1.15] text-[#2a241e] max-w-3xl pb-2">'
+        + 'Join a <span class="ital ul-accent">healing circle</span>'
+        + '</h2>'
+        + '<p class="text-[15px] text-[#5a4d40] max-w-xl mt-3">Limited spots &middot; Book your place via WhatsApp</p>'
+        + '</div>'
+        + '<div class="sess-grid">'
+        + featuredHtml(featured)
+        + '<div class="sess-mini-list">' + rightHtml + '</div>'
+        + '</div>'
+        + '</div>';
+
+      section.style.display = '';
+      lucide.createIcons();
+      section.querySelectorAll('.iv').forEach(function (el) { io.observe(el); });
+      showNav();
+    }
+
+    // Show skeleton while loading
+    section.innerHTML =
+      '<div class="relative max-w-[1400px] mx-auto">'
+      + '<div class="sess-grid sess-skeleton">'
+      + '<div class="sess-sk-feat sess-shimmer"></div>'
+      + '<div class="sess-sk-mini">'
+      + '<div class="sess-sk-row sess-shimmer"></div>'
+      + '<div class="sess-sk-row sess-shimmer"></div>'
+      + '<div class="sess-sk-row sess-shimmer"></div>'
+      + '</div></div></div>';
+    section.style.display = '';
+
+    fetch(SESSIONS_URL)
+      .then(function (r) { return r.json(); })
+      .then(render)
+      .catch(function () { section.style.display = 'none'; });
+  })();
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
