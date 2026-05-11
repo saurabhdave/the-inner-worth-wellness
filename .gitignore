@@ -32,7 +32,6 @@ build/
 
 # Claude Code
 .claude/settings.local.json
-docs/superpowers/
 
 # Brainstorming / visual companion
 .superpowers/
